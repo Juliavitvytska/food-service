@@ -5,7 +5,9 @@ import './styles.css';
 const menuContainer = document.querySelector('.js-menu');
 
 const createProductCards = item => 
-menuContainer.insertAdjacentHTML('beforeend', menuTemplate(menu));
+menuContainer.insertAdjacentHTML('beforeend', menuTemplate(item));
+createProductCards(menu); 
+
 
 
 const Theme = {
