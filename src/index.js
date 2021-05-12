@@ -3,12 +3,10 @@ import menu from './menu.json';
 import './styles.css';
 
 const menuContainer = document.querySelector('.js-menu');
-const menuMarkup = createProductCards(menu);
-menuContainer.insertAdjacentHTML('beforeend', menuMarkup);
 
-function createProductCards(card){
-return card.map(menuTemplate).join('');
-}
+const createProductCards = item => 
+menuContainer.insertAdjacentHTML('beforeend', menuTemplate(menu));
+
 
 const Theme = {
     LIGHT: 'light-theme',
@@ -17,10 +15,12 @@ const Theme = {
 
 const switcher = document.querySelector("#theme-switch-toggle");
 const localStorageTheme = localStorage.getItem('theme');
-document.body.classList.add(Theme.LIGHT);
+const body = document.body.classList;
+
+body.replace(Theme.LIGHT, Theme.DARK);
 
 if (localStorageTheme){
-    document.body.classList.add(localStorageTheme);
+    body.add(localStorageTheme);
 }
 
 if (localStorageTheme === Theme.DARK){
@@ -29,12 +29,12 @@ if (localStorageTheme === Theme.DARK){
 
 function clickOnSwitcher(e){
     if(e.currentTarget.checked){
-        document.body.classList.remove(Theme.LIGHT);
-        document.body.classList.add(Theme.DARK);
+        body.remove(Theme.LIGHT);
+        body.add(Theme.DARK);
         localStorage.setItem('theme', Theme.DARK);
     }else{
-        document.body.classList.remove(Theme.DARK);
-        document.body.classList.add(Theme.LIGHT);
+        body.remove(Theme.DARK);
+        body.add(Theme.LIGHT);
         localStorage.setItem('theme', Theme.LIGHT);
     }
 }
