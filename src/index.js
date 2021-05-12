@@ -30,15 +30,13 @@ if (localStorageTheme === Theme.DARK){
 }
 
 function clickOnSwitcher(e){
-    if(e.currentTarget.checked){
-        body.remove(Theme.LIGHT);
-        body.add(Theme.DARK);
-        localStorage.setItem('theme', Theme.DARK);
-    }else{
-        body.remove(Theme.DARK);
-        body.add(Theme.LIGHT);
-        localStorage.setItem('theme', Theme.LIGHT);
+    body.replace(Theme.LIGHT, Theme.DARK);
+    localStorage.setItem('theme', Theme.DARK);
+
+    if(!e.currentTarget.checked){
+        body.replace(Theme.DARK,Theme.LIGHT);
+        localStorage.setItem('theme', Theme.LIGHT);}
     }
-}
+
 
 switcher.addEventListener("click", clickOnSwitcher);
